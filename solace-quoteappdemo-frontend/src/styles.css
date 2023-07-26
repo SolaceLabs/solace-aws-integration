@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import "~bootstrap/dist/css/bootstrap.css"; */
+/* @import "https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/minty/bootstrap.min.css"; */
+@import "https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/darkly/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
+
+body {
+  padding-bottom: 150px;
+}
+
+/*
+
+I will show you how to change a height of a standard Bootstrap navbar.
+
+*/
+
+.navbar {
+  padding: 3px;
+}
+
+.navbar-brand {
+  padding: 0 15px;
+}
+
+.navbar-expand {
+  padding: 0 15px;
+}
+
+.navbar-toggle {
+  /* (80px - button height 34px) / 2 = 23px */
+  margin-top: 23px;
+  padding: 9px 10px !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav>li>a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 26.5px;
+    padding-bottom: 26.5px;
+    line-height: 27px;
+  }
+}

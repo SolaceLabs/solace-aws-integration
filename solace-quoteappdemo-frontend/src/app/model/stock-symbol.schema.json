@@ -1,0 +1,41 @@
+{
+  "title": "StockSymbol",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "pOpen": {
+      "type": "number"
+    },
+    "pHigh": {
+      "type": "number"
+    },
+    "pLow": {
+      "type": "number"
+    },
+    "pClose": {
+      "type": "number"
+    },
+    "pDiff": {
+      "type": "number"
+    },
+    "isRised": {
+      "type": "boolean",
+      "description": "Currently we need outside method to operate this value."
+    },
+    "isSubscribed": {
+      "type": "boolean",
+      "description": "True if client subscribes this symbol, otherwise false.",
+      "default": false
+    },
+    "vTotal": {
+      "type": "number"
+    }
+  },
+  "additionalProperties": false,
+  "required": ["id", "displayName", "pOpen", "pClose"]
+}

@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:     
+  frontend:
+    container_name: frontend
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: solace-demo/quote-app-frontend:0.3
+    ports:
+      - 7888:80
+    restart: "no"
+    environment:
+      TZ: ${TZ}

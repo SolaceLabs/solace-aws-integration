@@ -1,0 +1,12 @@
+<div class="card border-success mb-3" style="max-width: 96%;">
+  <div class="card-header">Exchange News</div>
+  <div id="adminMsgPanel" class="card-body">
+    <!-- <p class="meta-data">Click "Start to monitor" to receive logistics messages.</p> -->
+    <!-- <p class="text-info">msgList[0]</p> -->
+    <!-- first is a boolean value provided by Angular, while it's true, text-info will be applied. -->
+    <!-- So you may applied several class name with different conditions. -->
+    <p *ngFor='let msg of exchangeMsgs; let isFirst = first' [ngClass]="{'text-success': isFirst, 'text-muted': !isFirst}">
+      {{ msg }}
+    </p>
+  </div>
+</div>

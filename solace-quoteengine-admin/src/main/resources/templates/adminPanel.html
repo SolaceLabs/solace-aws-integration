@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
+    <script th:src="@{solclient/solclient-debug.js}"></script>
+    <script th:src="@{js/commonFunctions.js}"></script>
+    <script th:src="@{js/clientLevelControl.js}"></script>
+    <script th:src="@{js/MyTopicSubscriber.js}"></script>
+    <script th:src="@{libs/jquery-1.12.4.min.js}"></script>
+    <script th:src="@{bootstrap/js/bootstrap.js}"></script>
+    <title>Solace. Exchange 2.0 Admin Panel</title>
+</head>
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">SolEx. Admin Panel</h3>
+        <div style="text-align: right">
+            <small>Login User: Solace Administrator</small>
+        </div>
+    </div>
+    <br/>
+    <div class="panel-body">
+        <div class="card border-warning mb-3" style="max-width: 96%;">
+            <div class="card-header">Customer Speed Shift</div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex align-items-center">
+                        Level 1: &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level1-options" id="level1-speed-99" value="1" autocomplete="off" /> CRAZY
+                            </label>
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="level1-options" id="level1-speed-88" value="10" autocomplete="off" checked="checked" /> Ultra High
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level1-options" id="level1-speed-66" value="100" autocomplete="off" /> High
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level1-options" id="level1-speed-33" value="500" autocomplete="off" /> Normal
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level1-options" id="level1-speed-11" value="3000" autocomplete="off" /> Low
+                            </label>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-success" onclick="changeSpeed('level1');">Apply</button>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        Level 2: &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level2-options" id="level2-speed-99" value="1" autocomplete="off" /> CRAZY
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level2-options" id="level2-speed-88" value="10" autocomplete="off" /> Ultra High
+                            </label>
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="level2-options" id="level2-speed-66" value="100" autocomplete="off" checked="checked" /> High
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level2-options" id="level2-speed-33" value="500" autocomplete="off" /> Normal
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level2-options" id="level2-speed-11" value="3000" autocomplete="off" /> Low
+                            </label>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-success" onclick="changeSpeed('level2');">Apply</button>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        Level 3: &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level3-options" id="level3-speed-99" value="1" autocomplete="off" /> CRAZY
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level3-options" id="level3-speed-88" value="10" autocomplete="off" /> Ultra High
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level3-options" id="level3-speed-66" value="100" autocomplete="off" /> High
+                            </label>
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="level3-options" id="level3-speed-33" value="500" autocomplete="off" checked="checked" /> Normal
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level3-options" id="level3-speed-11" value="3000" autocomplete="off" /> Low
+                            </label>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-success" onclick="changeSpeed('level3');">Apply</button>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        Level 4: &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level4-options" id="level4-speed-99" value="1" autocomplete="off" /> CRAZY
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level4-options" id="level4-speed-88" value="10" autocomplete="off" /> Ultra High
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level4-options" id="level4-speed-66" value="100" autocomplete="off" /> High
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="level4-options" id="level4-speed-33" value="500" autocomplete="off" /> Normal
+                            </label>
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="level4-options" id="level4-speed-11" value="3000" autocomplete="off" checked="checked" /> Low
+                            </label>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-success" onclick="changeSpeed('level4');">Apply</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card border-success mb-3" style="max-width: 96%;">
+        <div class="card-header">Exchange Messages</div>
+        <div id="adminMsgPanel" class="card-body">
+            <!-- <p class="meta-data">Click "Start to monitor" to receive logistics messages.</p> -->
+            <p class="text-info">Preparing to receive SolEx messages...</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+
+    </div>
+    <footer class="page-footer font-small blue pt-4 mt-4">
+        <!--Copyright-->
+        <div class="footer-copyright py-3 text-center">
+            © 2018 Copyright:
+            <a href="https://solace.com/"> solace.com </a>
+            <p th:text="${Today}"></p>
+        </div>
+        <!--/.Copyright-->
+    </footer>
+    <script th:inline="javascript">
+        // Define: GLOBAL variables for Solace login information.
+        var backendUrl = [[${backendUrl}]]
+        // var mySolaceClientUserName = [[${session.solaceClientUserName}]];
+        // var mySolaceVpnName = [[${session.solaceClientUserName}]];
+    </script>
+</div>
+</body>
+</html>

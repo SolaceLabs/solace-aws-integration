@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
+    <script th:src="@{solclient/solclient-debug.js}"></script>
+    <script th:src="@{js/commonFunctions.js}"></script>
+    <script th:src="@{js/MyTopicSubscriber.js}"></script>
+    <script th:src="@{libs/jquery-1.12.4.min.js}"></script>
+    <script th:src="@{bootstrap/js/bootstrap.js}"></script>
+    <title>Solace. Exchange v1.1 Portal</title>
+</head>
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Solace. Exchange Portal</h3>
+        <div style="text-align: right">
+            <small>Ver: <span th:text="${session.serviceLevelAlias}"
+                              th:unless="${session == null}"></span></small>
+        </div>
+    </div>
+    <br/>
+    <div class="panel-body">
+        <div class="card border-warning mb-3" style="max-width: 95%;">
+            <div class="card-header">看盤系統效能</div>
+            <div class="card-body">
+                交易速度： <strong id="ME_PERF_INFO">0.000</strong> 筆/秒<br/>
+                交易筆數： <strong id="ME_ORDER_TOTAL">0</strong> 筆<br/>
+                行情速度： <strong id="DEVICE_MD_RATE">0.000</strong> 筆/秒<br/>
+                使用頻寬： <strong id="DEVICE_BW_USAGE">0</strong> bytes<br/>
+            </div>
+        </div>
+        <div style="text-align: center">
+            <div class="card text-white bg-info mb-3" style="max-width: 95%;"
+                 th:if="${session.myCustomer eq null or session.myCustomer.getClientId().equals('NULL-CLIENT-ID')}">
+                <div class="card-header">請輸入您的代號：
+                    <small>（建議為英數字）</small>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/login}" method="post">
+                        <input id="displayName" name="displayName" type="hidden" th:value="${session.serviceLevelAlias}"
+                               th:unless="${session == null}"/>
+                        <input id="serviceLevel" name="serviceLevel" type="hidden" th:value="${session.serviceLevel}"
+                               th:unless="${session == null}"/>
+                        <input id="clientId" name="clientId" type="text" width="50%"/><br/><br/>
+                        <input class="btn btn-primary btn-lg" type="submit" value="LOGIN"/><br/>
+                    </form>
+                </div>
+            </div>
+            <div class="card text-white bg-info mb-3" style="max-width: 95%;"
+                 th:if="${session.myCustomer ne null and (not session.myCustomer.getClientId().equals('NULL-CLIENT-ID'))}">
+                <div class="card-header">Logged as:</div>
+                <div class="card-body">
+                    <form th:action="@{/logout}" method="post">
+                        <h4 class="card-title" th:text="${session.myCustomer.getClientId()}"></h4>
+                        <p class="card-text" th:text="'Level: ' + ${session.serviceLevelAlias}"></p><br/>
+                        <input class="btn btn-secondary btn-sm" type="submit" value="Logout" /><br/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: right">
+            <button class="btn btn-info" id="btnStart" value="start"
+                    onclick="btnStartClick(this);">啟動行情接收
+            </button>
+        </div>
+        <table width="100%" class="table table-hover">
+            <thead>
+            <tr class="table-light" style="text-align: center">
+                <td>股票</td>
+                <td>成交量</td>
+                <td>價格</td>
+                <td>漲跌</td>
+            </tr>
+            </thead>
+            <tbody th:each="ss:${session.oTodaySymbols}">
+            <tr>
+                <td style="text-align: center">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary active" style="width: 90px;" th:onclick="'javascript:symbolClick(document.getElementById(\'' + ${ss[0]} + '-isChecked\'))'">
+                        <input th:id="${ss[0]} + '-isChecked'" th:value="${ss[0]}" name="symbolList" type="checkbox" checked="" autocomplete="off" />
+                        <span th:text="${ss[1]}"></span>
+                    </label>
+                </div>
+                </td>
+                <td th:id="${ss[0]} + '-vTotal'">0</td>
+                <td th:id="${ss[0]} + '-pClose'" th:text="${ss[2]}"></td>
+                <td th:id="${ss[0]} + '-pDiff'">0.00</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br/>
+    <div class="card border-success mb-3" style="max-width: 96%;">
+        <div class="card-header">交易所訊息</div>
+        <div id="adminMsgPanel" class="card-body">
+            <!-- <p class="meta-data">Click "Start to monitor" to receive logistics messages.</p> -->
+            <p class="text-info">Preparing to receive SolEx messages...</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+
+    </div>
+    <footer class="page-footer font-small blue pt-4 mt-4">
+        <!--Copyright-->
+        <div class="footer-copyright py-3 text-center">
+            © 2018 Copyright:
+            <a href="https://solace.com"> solace.com </a>
+            <p th:text="${Today}"></p>
+        </div>
+        <!--/.Copyright-->
+    </footer>
+    <script th:inline="javascript">
+        // Define: GLOBAL variables for Solace login information.
+        var mySolaceClientUserName = [[${session.solaceClientUserName}]];
+        var mySolaceVpnName = [[${session.solaceClientUserName}]];
+    </script>
+</div>
+</body>
+</html>

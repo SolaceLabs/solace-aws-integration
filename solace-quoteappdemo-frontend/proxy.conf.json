@@ -1,0 +1,6 @@
+{
+  "/api/general/listStocks": {
+    "target": "http://localhost:8080/api/general/listStocks",
+    "secure": false
+  }
+}
