@@ -9,9 +9,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.util.DefaultUriBuilderFactory;
 
 import java.time.Duration;
 
@@ -28,8 +25,6 @@ public class ConfigurationBean {
         config.setAllowCredentials(true);
         // Define the allowed origins
         config.addAllowedOriginPattern("*");
-//        config.allowedOriginPatterns("/**");
-        // Degine the allowed headers or methods
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
@@ -39,25 +34,12 @@ public class ConfigurationBean {
         return bean;
     }
 
-
-    /*@Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOriginPatterns("/**");
-            }
-        };
-    }
-*/
-
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         RestTemplate restTemplate = builder
                 .setConnectTimeout(Duration.ofMillis(3000))
                 .setReadTimeout(Duration.ofMillis(3000))
                 .build();
-//        restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory(solaceConfigurationProps.solaceRestApiUrl));
         return restTemplate;
     }
 }

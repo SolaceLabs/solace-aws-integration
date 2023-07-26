@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
 @RestController
@@ -29,80 +27,26 @@ public class SempController {
 
     private HashMap<String, Boolean> vpnStatus;
 
+    @RequestMapping(value = "/ShiftSpeedOp/{clientLevel}")
+    public void VpnOpen(@PathVariable String clientLevel, @RequestParam("speed") String speed) {
+        // TODO: Should validate "speed" as integer.
+        final String clientProfileName = "cp-" + clientLevel;
+        int speedInt = Integer.parseInt(speed);
 
-    /*
-        public SempController() {
-            this.vpnStatus = new HashMap<>();
-            this.vpnStatus.put("haru", true);
-            this.vpnStatus.put("natsu", true);
-            this.vpnStatus.put("aki", true);
-            this.vpnStatus.put("fuyu", true);
-        }
+        JSONObject clientProfileUpdateRequest = new JSONObject();
+        clientProfileUpdateRequest.put("operation", "update");
 
-        private String changeStatus(String vpnName) {
-            String sempCommand = "";
+        JSONObject innerRequest = new JSONObject();
+        innerRequest.put("clientProfileName", clientProfileName);
+        innerRequest.put("elidingEnabled", true);
+        innerRequest.put("elidingDelay", speedInt);
 
-            if (this.vpnStatus.containsKey(vpnName)) {
-                if (this.vpnStatus.get(vpnName)) {
-                    sempCommand = "<shutdown/>";
-                    this.vpnStatus.put(vpnName, false);
-                } else {
-                    sempCommand = "<no><shutdown/></no>";
-                    this.vpnStatus.put(vpnName, true);
-                }
-            }
-            return sempCommand;
-        }
+        clientProfileUpdateRequest.put("clientProfile", innerRequest);
 
-        private String getVpnBrName(String vpnName) {
-            String vpnBrName = "";
+        log.info("RestAPI REQ: {}", clientProfileUpdateRequest);
 
-            if (this.vpnStatus.containsKey(vpnName)) {
-                vpnBrName = "L_" + vpnName + "-L_test01";
-            }
-
-            return vpnBrName;
-
-        }
-
-        @RequestMapping(value = "/VpnBrOp/{vpnName}")
-        public SempResult VpnOpen(@PathVariable String vpnName, HttpSession session, HttpServletRequest reuqest) {
-            final String vpnOperation = this.changeStatus(vpnName);
-            final String vpnBrName = this.getVpnBrName(vpnName);
-            final String sempRequest = SEMP_BEGIN_LINE +
-                    "<bridge>" +
-                    "<bridge-name>" + vpnBrName + "</bridge-name>" +
-                    "<vpn-name>" + vpnName + "</vpn-name>" +
-                    "<primary/>" +
-                    vpnOperation +
-                    "</bridge>" +
-                    SEMP_END_LINE;
-
-            System.out.println("SEMP REQ: " + sempRequest);
-
-            return this.sendSempRequest(sempRequest);
-        }
-*/
-        @RequestMapping(value = "/ShiftSpeedOp/{clientLevel}")
-        public void VpnOpen(@PathVariable String clientLevel, @RequestParam("speed") String speed) {
-            // TODO: Should validate "speed" as integer.
-            final String clientProfileName = "cp-" + clientLevel;
-            int speedInt = Integer.parseInt(speed);
-
-            JSONObject clientProfileUpdateRequest = new JSONObject();
-            clientProfileUpdateRequest.put("operation", "update");
-
-            JSONObject innerRequest = new JSONObject();
-            innerRequest.put("clientProfileName", clientProfileName);
-            innerRequest.put("elidingEnabled", true);
-            innerRequest.put("elidingDelay", speedInt);
-
-            clientProfileUpdateRequest.put("clientProfile", innerRequest);
-
-            log.info("RestAPI REQ: {}", clientProfileUpdateRequest);
-
-            solaceRestApiClient.sendClientProfileOperationRequest(clientProfileUpdateRequest.toString());
-        }
+        solaceRestApiClient.sendClientProfileOperationRequest(clientProfileUpdateRequest.toString());
+    }
 
 
     private void cleanUpClientProfiles() {

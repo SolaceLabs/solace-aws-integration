@@ -6,22 +6,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SolaceConfigurationProps {
 
-    @Value("${solace.userName}")
-    public String solaceUserName;
-    @Value("${solace.password}")
-    public String solacePassword;
-    @Value("${solace.sempUrl}")
-    public String solaceSempUrl;
     @Value("${solace.restApiUrl}")
     public String solaceRestApiUrl;
     @Value("${solace.restApiToken}")
     public String solaceRestApiToken;
-    @Value("${solace.vpnName}")
-    public String vpnName;
-    @Value("${solace.sempVersion}")
-    public String sempVersion;
-    final public String SEMP_BEGIN_LINE = "<rpc semp-version=\"" + sempVersion + "\">\n";
-    final public String SEMP_END_LINE = "</rpc>\n";
 
     @Value("${app.user.level1.name}")
     public String level1UserName;
