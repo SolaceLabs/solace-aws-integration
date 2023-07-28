@@ -4,13 +4,13 @@
 export const environment = {
   production: false,
   solace: {
-    host: 'wss://mr-connection-iipj85w4xps.messaging.solace.cloud:443',
-    vpn: 'hari-solace-aws-wrkshp',
-    clientUserName: 'solace-cloud-client',
-    clientPassword: 'vhhljhvct1vj5vbh8g6ir2kqqq'
+    host: 'SOLACE_BROKER_HOST_URL',
+    vpn: 'SOLACE_VPN_NAME',
+    clientUserName: 'SOLACE_BROKER_USERNAME',
+    clientPassword: 'SOLACE_BROKER_PASSWORD'
   },
   restBackend: {
-    uri: 'http://localhost:8081/api/general/listStocks'
+    uri: 'http://EC2_INSTANCE_PUBLIC_IP:8081/api/general/listStocks'
   }
 };
 
