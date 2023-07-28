@@ -4,13 +4,13 @@
 export const environment = {
   production: false,
   solace: {
-    host: 'wss://mr-connection-nnbri3jwreh.messaging.solace.cloud:443',
-    vpn: 'solace-aws-int-eu',
+    host: 'wss://mr-connection-iipj85w4xps.messaging.solace.cloud:443',
+    vpn: 'hari-solace-aws-wrkshp',
     clientUserName: 'solace-cloud-client',
-    clientPassword: '3a64jebvl11vd3cc9q6t6nsv6p'
+    clientPassword: 'vhhljhvct1vj5vbh8g6ir2kqqq'
   },
   restBackend: {
-    uri: 'http://35.176.0.86:8080/api/general/listStocks'
+    uri: 'http://localhost:8081/api/general/listStocks'
   }
 };
 

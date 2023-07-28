@@ -108,7 +108,7 @@ Resources:
   PubSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: This will allow SSH traffic to instances from public internet
+      GroupDescription: Allow inbound traffic on TCP ports 22, 8081, and 7888
       VpcId: 
         Ref: solacesecwkspvpc
       Tags: 
@@ -116,6 +116,19 @@ Resources:
           Value: solace-workshop
         - Key: Name
           Value: PubSecurityGroup
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          CidrIp: "0.0.0.0/0"
+          FromPort: 22
+          ToPort: 22
+        - IpProtocol: tcp
+          CidrIp: "0.0.0.0/0"
+          FromPort: 8081
+          ToPort: 8081
+        - IpProtocol: tcp
+          CidrIp: "0.0.0.0/0"
+          FromPort: 7888
+          ToPort: 7888
   PubCommunication:
     Type: "AWS::EC2::SecurityGroupIngress"
     Properties:

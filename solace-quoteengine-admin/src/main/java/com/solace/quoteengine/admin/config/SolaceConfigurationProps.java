@@ -6,6 +6,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SolaceConfigurationProps {
 
+    @Value("${solace.semp.url}")
+    public String solaceSempUrl;
+
+    @Value("${solace.semp.username}")
+    public String solaceSempUsername;
+
+    @Value("${solace.semp.password}")
+    public String solaceSempPassword;
+
+    @Value("${solace.semo.brokername}")
+    public String solaceSempBrokerName;
+
+
     @Value("${solace.restApiUrl}")
     public String solaceRestApiUrl;
     @Value("${solace.restApiToken}")
