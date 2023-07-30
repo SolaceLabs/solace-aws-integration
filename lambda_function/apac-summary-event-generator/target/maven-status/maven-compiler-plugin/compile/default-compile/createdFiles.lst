@@ -1,0 +1,3 @@
+com/solace/quoteengine/lambda/summaryeventgen/model/SummaryEvent.class
+com/solace/quoteengine/lambda/summaryeventgen/handlers/SummaryEventGenerator.class
+com/solace/quoteengine/lambda/summaryeventgen/handlers/SummaryEventGenerator$1.class

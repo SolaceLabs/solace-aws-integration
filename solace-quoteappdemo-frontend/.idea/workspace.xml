@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="583cdc14-d5e5-4510-b1c2-3241f5086737" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../solace-quoteengine-admin/libs/swagger-java-client-1.0.0-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../solace-quoteengine-admin/libs/swagger-java-client-1.0.0-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../solace-quoteengine-admin/libs/swagger-java-client-1.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../solace-quoteengine-admin/src/main/java/com/solace/quoteengine/admin/service/SolaceSEMPClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cloudformation-template/aws-solace-workshop.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../cloudformation-template/aws-solace-workshop.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../solace-quoteengine-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../solace-quoteengine-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../solace-quoteengine-admin/src/main/java/com/solace/quoteengine/admin/apis/SempController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../solace-quoteengine-admin/src/main/java/com/solace/quoteengine/admin/apis/SempController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../solace-quoteengine-admin/src/main/java/com/solace/quoteengine/admin/config/SolaceConfigurationProps.java" beforeDir="false" afterPath="$PROJECT_DIR$/../solace-quoteengine-admin/src/main/java/com/solace/quoteengine/admin/config/SolaceConfigurationProps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../solace-quoteengine-admin/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../solace-quoteengine-admin/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,11 +82,35 @@
       <option name="presentableId" value="Default" />
       <updated>1690535672929</updated>
       <workItem from="1690535674092" duration="1741000" />
-      <workItem from="1690554040291" duration="3167000" />
+      <workItem from="1690554040291" duration="3683000" />
     </task>
+    <task id="LOCAL-00001" summary="Updates for credentials">
+      <option name="closed" value="true" />
+      <created>1690579414600</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1690579414600</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updates for credentials" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates for credentials" />
   </component>
 </project>
