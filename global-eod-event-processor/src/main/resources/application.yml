@@ -6,7 +6,7 @@ spring:
     stream:
       bindings:
         globalEodEventConsumer-in-0:
-          destination: 'trading/quotes/eod/event/v1/published/*'
+          destination: 'trading/quotes/summary/event/v1/published/*'
       binders:
         solace-binder:
           type: solace
