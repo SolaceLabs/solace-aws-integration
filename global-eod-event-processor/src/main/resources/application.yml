@@ -1,0 +1,24 @@
+server.port: 8084
+spring:
+  cloud:
+    function:
+      definition: globalEodEventConsumer
+    stream:
+      bindings:
+        globalEodEventConsumer-in-0:
+          destination: 'trading/quotes/eod/event/v1/published/*'
+      binders:
+        solace-binder:
+          type: solace
+          environment:
+            solace:
+              java:
+                host: tcps://mr-connection-3d78t9gmhxv.messaging.solace.cloud:55443
+                msgVpn: solace-aws-int-onprem
+                clientUsername: solace-cloud-client
+                clientPassword: fpmjrcl38m8r5iqcvg753udgk7
+logging:
+  level:
+    root: info
+    org:
+      springframework: error
