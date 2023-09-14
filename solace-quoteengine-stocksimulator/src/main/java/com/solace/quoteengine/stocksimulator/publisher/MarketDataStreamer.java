@@ -12,6 +12,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PreDestroy;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -183,8 +184,8 @@ public class MarketDataStreamer {
         String tradeTimeStamp = null;
 
         int iAvailableSymbolsToday = this.oTodaySymbols.size();
-
-        for (long tradeCount = 0; tradeCount < configProperties.TRADING_CAPABILITY; tradeCount++) {
+        long tradeCount = 0;
+        while (true) {
             iTradingSymbol = (int) ((Math.random() * iAvailableSymbolsToday));
             iTradingVolume = (int) ((Math.random() * configProperties.MAX_VOL_PER_ORDER) + 1);
             isBuyPrice = (new Random()).nextBoolean();
@@ -216,23 +217,21 @@ public class MarketDataStreamer {
                 } catch (Exception ex) {
                     log.error("Exception occurred while trading: ", ex);
                 }
-                log.info("Match Engine Performance: {} orders/sec, {}/{} orders finished @ {}", dMatchRate, tradeCount, configProperties.TRADING_CAPABILITY, tradeDateFormat.format(System.currentTimeMillis()));
+                log.info("Match Engine Performance: {} orders/sec, {} orders finished @ {}", dMatchRate, tradeCount, tradeDateFormat.format(System.currentTimeMillis()));
             }
+            tradeCount++;
             busyWaitMicros(iMatchingDelay);
         }
-        closeMarket();
     }
 
     // Publishing market data
     private void publishMarketData(StockSymbol currSS) {
         MarketData md = new MarketData(this.currOrderId, currSS);
-        log.info("The marketData object is:{}", md);
         // For UTF-8 strings, please ensure you get the bytes in UTF-8.
         // This try...catch... statement is very weak, please complete it if you want to use this code.
         try {
             byteMsg.clearContent();
             topic = JCSMPFactory.onlyInstance().createTopic(this.marketLiveDataTopic + "/" + currSS.getId());
-            log.info("The publishMarketData is publishing data to topic :{}", topic.toString());
             String currSymbolMarketData = new String(md.toString().getBytes("UTF-8"), "UTF-8");
             byteMsg.setElidingEligible(true);
             byteMsg.setData(currSymbolMarketData.getBytes());
@@ -257,5 +256,10 @@ public class MarketDataStreamer {
         printAllConfigProperties();
         loadSymbols("myStockList.txt");
         startTrade();
+    }
+
+    @PreDestroy
+    public void destroy() {
+        closeMarket();
     }
 }
