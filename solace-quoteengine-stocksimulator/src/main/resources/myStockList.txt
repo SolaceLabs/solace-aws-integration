@@ -1,0 +1,20 @@
+ACABU,Atlantic Coastal Acquisition Corp II,41.1
+AFRI,Forafric Global Plc,62.6
+ALIM,Alimera Sciences Inc,83
+TSLA,Tesla Inc,4.6
+AAPL,Apple Inc,52.2
+TSLI,Graniteshares -1X Tsla Daily ETF,13.35
+TWNK,Hostess Brands Inc,271.5
+EBAY,Ebay Inc,20.25
+EDUT,GX Education ETF,13.20
+ESACU,Esgen Acquisition Corp,23.65
+EXAI,Exscientia Ltd ADR,47.90
+EYEN,Eyenovia Inc,27.80
+GAIA,Gaiam Inc,229
+GFS,Globalfoundries Inc,15.6
+GNLX,Genelux Corp,62.5
+GRIL,Muscle Maker Inc,19.40
+SAFT,Safety Ins Group Inc,155
+SCTL,Societal Cdmo Inc,110
+SEDG,Solaredge Tech,80.8
+LAMR,Lamar Advertis A,37.0
