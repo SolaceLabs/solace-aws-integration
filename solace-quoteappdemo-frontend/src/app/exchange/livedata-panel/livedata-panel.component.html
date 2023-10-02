@@ -18,11 +18,15 @@
         </div>
       </td>
       <td> {{symbol.vTotal}} </td>
-      <td>
-        <span style="width: 75px;" [ngClass]="[symbol.pDiff > 0.0? 'text-danger': (symbol.pDiff < 0.0? 'text-success': 'text-muted')]">
+      <td style="width: 100px;">
+        <span
+          [ngClass]="[symbol.pDiff > 0.0? 'text-danger': (symbol.pDiff < 0.0? 'text-success': 'text-muted')]">
           <i [ngClass]="[symbol.pDiff > 0.0? 'fa fa-caret-up': (symbol.pDiff < 0.0? 'fa fa-caret-down': 'text-muted')]"></i>{{symbol.pClose}}
-        </span></td>
-      <td><span [ngClass]="[symbol.pDiff > 0.0? 'text-danger': (symbol.pDiff < 0.0? 'text-success': 'text-muted')]">{{symbol.pDiff}}</span></td>
+        </span>
+      </td>
+      <td style="width: 100px;"><span
+          [ngClass]="[symbol.pDiff > 0.0? 'text-danger': (symbol.pDiff < 0.0? 'text-success': 'text-muted')]">{{symbol.pDiff}}</span>
+      </td>
     </tr>
   </tbody>
 </table>
