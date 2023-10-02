@@ -26,8 +26,8 @@ public class StockSymbol {
     public StockSymbol(String id, String displayName) {
         this.id = id;
         this.displayName = displayName;
-        this.pPriceUnit = 0.05;
-        this.vNextPriceVol = 100;
+        this.pPriceUnit = 9.05;
+        this.vNextPriceVol = 40;
         this.lastUpdated = (new java.util.Date()).getTime();
         System.out.println("Generating a Stock Symbol..." + this.getId() + ", " + this.getDisplayName());
     }
@@ -49,23 +49,22 @@ public class StockSymbol {
         this.vCurrent = tradeVol;
         this.vTotal = this.vTotal + this.vCurrent;
 
-        if (this.vTotal > this.vNextPriceVol) {
-            if (isBuyPrice) {
-                this.isLimitDown = (this.isLimitDown?false:true);
-                if (!isLimitUp) {
-                    this.pClose = this.pClose + this.pPriceUnit;
-                    this.isLimitUp = (this.pClose >= this.pLimitUp?true:false);
-                }
+
+        if (isBuyPrice) {
+            this.isLimitDown = (this.isLimitDown ? false : true);
+            if (!isLimitUp) {
+                this.pClose = this.pClose + this.pPriceUnit;
+                this.isLimitUp = (this.pClose >= this.pLimitUp ? true : false);
             }
-            else {
-                this.isLimitUp = (this.isLimitUp?false:true);
-                if (!isLimitDown) {
-                    this.pClose = this.pClose - this.pPriceUnit;
-                    this.isLimitDown = (this.pClose <= this.pLimitDown?true:false);
-                }
+        } else {
+            this.isLimitUp = (this.isLimitUp ? false : true);
+            if (!isLimitDown) {
+                this.pClose = this.pClose - this.pPriceUnit;
+                this.isLimitDown = (this.pClose <= this.pLimitDown ? true : false);
             }
-            this.vNextPriceVol = this.vNextPriceVol + 777;
         }
+        this.vNextPriceVol = this.vNextPriceVol + 777;
+
         this.pDiff = this.pClose - this.pOpen;
         this.updateHLPrice();
         this.lastUpdated = (new java.util.Date()).getTime();
