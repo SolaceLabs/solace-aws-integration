@@ -227,11 +227,13 @@ public class MarketDataStreamer {
     // Publishing market data
     private void publishMarketData(StockSymbol currSS) {
         MarketData md = new MarketData(this.currOrderId, currSS);
+//        log.info("The marketData object is:{}", md);
         // For UTF-8 strings, please ensure you get the bytes in UTF-8.
         // This try...catch... statement is very weak, please complete it if you want to use this code.
         try {
             byteMsg.clearContent();
             topic = JCSMPFactory.onlyInstance().createTopic(this.marketLiveDataTopic + "/" + currSS.getId());
+//            log.info("The publishMarketData is publishing data to topic :{}", topic.toString());
             String currSymbolMarketData = new String(md.toString().getBytes("UTF-8"), "UTF-8");
             byteMsg.setElidingEligible(true);
             byteMsg.setData(currSymbolMarketData.getBytes());

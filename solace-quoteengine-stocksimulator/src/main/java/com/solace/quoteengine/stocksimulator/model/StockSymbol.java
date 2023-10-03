@@ -1,5 +1,7 @@
 package com.solace.quoteengine.stocksimulator.model;
 
+import java.time.Instant;
+
 /**
  * Created by hhjau on 2018/04/19.
  */
@@ -67,7 +69,7 @@ public class StockSymbol {
 
         this.pDiff = this.pClose - this.pOpen;
         this.updateHLPrice();
-        this.lastUpdated = (new java.util.Date()).getTime();
+        this.lastUpdated = Instant.now().toEpochMilli();
         return true;
     }
 
